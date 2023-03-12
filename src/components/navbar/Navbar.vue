@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="fixed w-full top-0 z-10 bg-white backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-gray-200 firefox:bg-opacity-90">
+    <nav ref="navbarRef" class="fixed w-full top-0 z-10 bg-white backdrop-filter backdrop-blur-lg bg-opacity-30 border-b border-gray-200 firefox:bg-opacity-90">
       <div class="max-w-8xl px-4">
         <div class="flex items-center justify-between h-16">
           <span class="text-2xl text-gray-900 font-semibold"><span>
@@ -17,26 +17,17 @@
 
           <ul class="md:flex md:items-center md:px-0 px-10 md:pb-0 pb-10 md:static absolute md:w-auto w-full top-14 duration-700 ease-in z-50 text-uppercase md:bg-transparent md:shadow-transparent shadow-2xl bg-white/90" :class="[open ? 'left-0' : 'left-[-100%]']">
              
-              <router-link   to="/"><li class="md:mx-4 md:my-0 my-6 font-bold"> Home </li></router-link>
-              <router-link :to="{name: 'product-category', params: {category: `jewelery`}}"> <li class="md:mx-4 md:my-0 my-6 font-bold">Jewelery </li></router-link>
-              <router-link :to="{name: 'product-category', params: {category: `women's clothing`}}"><li class="md:mx-4 md:my-0 my-6 font-bold"> Women's Clothing </li> </router-link>
-              <router-link :to="{name: 'product-category', params: {category: `men's clothing` }}"><li class="md:mx-4 md:my-0 my-6 font-bold"> Men's Clothing </li></router-link>
-              <router-link :to="{name: 'product-category', params: {category: 'electronics'}}"><li class="md:mx-4 md:my-0 my-6 font-bold"> Electronics </li></router-link>
+              <router-link :class="{'active': $route.path === '/'}"  to="/"><li class="hover:text-yellow-500 md:mx-4 md:my-0 my-6 font-bold" > Home </li></router-link>
+              <router-link  exact active-class="active" :to="{name: 'product-category', params: {category: `jewelery`}}"> <li class="hover:text-yellow-500 md:mx-4 md:my-0 my-6 font-bold">Jewelery </li></router-link>
+              <router-link  exact active-class="active" :to="{name: 'product-category', params: {category: `women's clothing`}}"><li class="hover:text-yellow-500 md:mx-4 md:my-0 my-6 font-bold"> Women's Clothing </li> </router-link>
+              <router-link  exact active-class="active" :to="{name: 'product-category', params: {category: `men's clothing` }}"><li class="hover:text-yellow-500 md:mx-4 md:my-0 my-6 font-bold"> Men's Clothing </li></router-link>
+              <router-link  exact active-class="active" :to="{name: 'product-category', params: {category: 'electronics'}}"><li class="hover:text-yellow-500 md:mx-4 md:my-0 my-6 font-bold"> Electronics </li></router-link>
           </ul>
 
         </div>
         
       </div>
-      <div v-if="show">
-              <div v-for="category in categoryStore.categories" :key="category.id" class="text-black absolute bg-white shadow-xl w-[300px] flex items-center ml-4 md:ml-[176px] h-auto border-t-2 duration-150 transition">
-                <ul class="p-5 ">
-                  <li>{{ categoryStore.categories[0] }}</li>
-                  <li  class="mt-3" >{{ categoryStore.categories[1] }}</li>
-                  <li  class="mt-3">{{ categoryStore.categories[2] }}</li>
-                  <li  class="mt-3">{{ categoryStore.categories[3] }}</li>
-                </ul>
-              </div>
-            </div>
+
 </nav>
   </header>
 </template>
@@ -46,10 +37,25 @@ import { ref } from "@vue/reactivity";
 import {useCategoryStore} from '../../stores/CategoryStore'
 import { useRouter } from 'vue-router'
 import { state } from "../../compossables/state";
+import { watchEffect } from "vue";
 
+
+watchEffect((onInvalidate) => {
+      const handleClick = (event) => {
+        // Check if the click target is inside or outside of the navbar element
+        if (open.value && navbarRef.value && !navbarRef.value.contains(event.target)) {
+          open.value = false
+        }
+      }
+      document.addEventListener('click', handleClick)
+      onInvalidate(() => {
+        document.removeEventListener('click', handleClick)
+      })
+    })
 const categoryStore = useCategoryStore();
 categoryStore.getCategories()
 
+const navbarRef = ref(null)
 const router = useRouter()
 const show = ref(false)
 function showCategory() {
@@ -66,6 +72,8 @@ function menuOpen() {
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.active {
+  color: rgb(255, 217, 0);
+}
 </style>

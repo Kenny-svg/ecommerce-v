@@ -3,12 +3,10 @@ import { createPinia } from 'pinia'
 import './style.css'
 import App from './App.vue'
 import router from './route'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 const pinia = createPinia()
-pinia.use(piniaPluginPersistedstate)
 // pinia.use((context) => {
     
 //   const storeId = context.store.$id

@@ -41,7 +41,7 @@
     ref(localStorage.setItem('productID', props.id))
     const productID = ref(parseInt(localStorage.getItem('productID')))
     const cartItemsID = ref(JSON.parse(localStorage.getItem('cartItemsID')))
-    const cartItems = ref(JSON.parse(localStorage.getItem('cartItems')))
+      const cartItems = ref(JSON.parse(localStorage.getItem('cartItems')))
     const product = ref([])
     const errorMessage = ref(null)
     const fetchComplete = ref(false)

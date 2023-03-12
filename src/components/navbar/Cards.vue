@@ -7,10 +7,14 @@
 
       <figcaption class="absolute text-lg -mt-24 mx-auto text-white px-4">
         <div>
-        <h1 class="font-bold bg-yellow-500/80 rounded-md text-sm md:text-md p-2 md:p-2 hover:bg-black/80">Shop Now!</h1>
+          
+          <router-link :to="{name: 'product-category', params: {category: `women's clothing`}}">
+            <h1 class="font-bold bg-yellow-500/80 rounded-md text-sm md:text-md p-2 md:p-2  w-24 text-center hover:bg-black/80">Shop Now!</h1>
+          </router-link>
+
       </div>
       <div>
-        <h1>Subtitle</h1>
+        <h1 class="text-xl text-black ">Women's wear</h1>
       </div>
       </figcaption>
   </figure>
@@ -21,10 +25,13 @@
 
       <figcaption class="absolute text-lg  -mt-24  text-white px-4">
         <div>
-        <h1 class="font-bold bg-yellow-500/80 rounded-md text-sm md:text-md p-2 md:p-2 hover:bg-black/80">Shop Now!</h1>
+
+          <router-link :to="{name: 'product-category', params: {category: `jewelery`}}">
+            <h1 class="font-bold bg-yellow-500/80 rounded-md text-sm md:text-md p-2 md:p-2  w-24 text-center hover:bg-black/80">Shop Now!</h1>
+          </router-link>
       </div>
       <div>
-        <h1>Subtitle</h1>
+        <h1 class="text-xl text-white">Jewelery</h1>
       </div>
       </figcaption>
   </figure>
@@ -37,10 +44,12 @@
 
       <figcaption class="absolute text-lg  -mt-24  text-white px-4">
         <div>
-        <h1 class="font-bold bg-yellow-500/80 rounded-md text-sm md:text-md p-2 md:p-2 hover:bg-black/80">Shop Now!</h1>
+          <router-link :to="{name: 'product-category', params: {category: `electronics`}}">
+            <h1 class="font-bold bg-yellow-500/80 rounded-md text-sm md:text-md p-2 md:p-2  w-24 text-center hover:bg-black/80">Shop Now!</h1>
+          </router-link>
       </div>
       <div>
-        <h1>Subtitle</h1>
+        <h1 class="text-xl black">Electronics</h1>
       </div>
       </figcaption>
   </figure>
@@ -51,10 +60,12 @@
 
       <figcaption class="absolute text-lg  -mt-24  text-white px-4">
         <div>
-        <h1 class="font-bold bg-yellow-500/80 rounded-md text-sm md:text-md p-2 md:p-2 hover:bg-black/80">Shop Now!</h1>
+          <router-link :to="{name: 'product-category', params: {category: `men's clothing`}}">
+            <h1 class="font-bold bg-yellow-500/80 rounded-md text-sm md:text-md p-2 md:p-2  w-24 text-center hover:bg-black/80">Shop Now!</h1>
+          </router-link>
       </div>
       <div>
-        <h1>Subtitle</h1>
+        <h1 class="text-xl">Men's wear</h1>
       </div>
       </figcaption>
   </figure>
