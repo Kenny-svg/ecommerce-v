@@ -15,7 +15,7 @@
 			<swiper-slide v-for="image in images" :key="image">
         <div class="">
           <img  :src="image.src" class="object-cover bg-black/100 ">
-          <p class="-mt-40 md:-mt-60 font-bold ml-10 absolute text-3xl text-fuchsia-900 md:text-5xl">{{ image.caption }}</p>
+          <p class="-mt-60 md:-mt-60 font-bold ml-10 absolute text-3xl text-fuchsia-900 md:text-5xl">{{ image.caption }}</p>
         </div>
 			</swiper-slide>
 		</swiper>
